@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TodoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+//ログイン操作の定義
+Route::middleware('auth')->group(function () {
+    Route::get('/', [TodoController::class, 'index']);
 });
+
+
+
+
+// Todo操作の定義
+
+Route::post('/todos', [TodoController::class, 'store']);
+Route::patch('/todos/update', [TodoController::class, 'update']);
+Route::delete('/todos/delete', [TodoController::class, 'destroy']);
