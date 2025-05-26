@@ -4,6 +4,14 @@
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
 
+@section('header')
+<div class="header__inner">
+  <div class="header-utilities">
+      <a class="header__logo" href="/">
+      Attendance Management
+      </a>
+@endsection
+
 @section('content')
 <div class="register-form__content">
   <div class="register-form__heading">

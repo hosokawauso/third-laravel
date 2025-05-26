@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ja
+<html lang="ja">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,7 +13,9 @@
 
 <body>
    <header class="header">
-     <div class="header__inner">
+
+      @yield('header')
+     {{--  <div class="header__inner">
         <div class="header-utilities">
             <a class="header__logo" href="/">
             Attendance Management
@@ -33,12 +36,14 @@
                </ul>
             </nav>
         </div>
-     </div>
-
+     </div>  --}}
    </header>
 
    <main>
     @yield('content')
+    @yield('path')
    </main>
+
+@yield('script')
 </body>
 </html>

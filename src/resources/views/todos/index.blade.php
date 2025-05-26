@@ -4,6 +4,33 @@
 <link rel="stylesheet" href="{{ asset ('css/index.css') }}" >
 @endsection
 
+@section('header')
+<div class="header__inner">
+    <div class="header-utilities">
+        <a class="header__logo" href="/todos">
+        {{ $user->name }} さんのTodoリスト
+        </a>
+        <nav>
+           <ul class ="header-nav">
+            @if (Auth::check())
+             <li class="header-nav__item">
+                <a class="header-nav__link" href="/mypage">マイページ</a>
+             </li>
+             <li class="header-nav__item">
+                <form class="form" action="/logout" method="post">
+                @csrf
+                <button class="header-nav__button">ログアウト</button>
+                </form>
+             </li>
+            @endif
+           </ul>
+        </nav>
+    </div>
+ </div>
+@endsection
+
+
+
 @section('content')
 <div class="todo__alert">
 
@@ -25,7 +52,7 @@
 </div>
 
 <div class="todo__content">
-    <form class="create-form" action="/todos"  method="post">
+    <form class="create-form" action="{{ route('todos.store') }}"  method="post">
         @csrf
       <div class="create-form__item">
         <input class="create-form__item-input" type="text" name='content' />
@@ -43,11 +70,11 @@
             @foreach($todos as $todo)
             <tr class="todo-table__row">                
                 <td class="todo-table__item">
-                    <form class="update-form" action="/todos/update" method="post" >
+                    <form class="update-form" action="{{ route('todos.update') }}" method="post" >
                     @method('PATCH')
                     @csrf
                         <div class="update-form__item">
-                            <input class="update-form__item-input" type="text" name="content"  value="{{ $todo['content'] }}">
+                            <input class="update-form__item-input" type="text" name="content"  value="{{ old('content', $todo['content']) }}">
                             <input type="hidden" name="id" value="{{ $todo['id'] }}">
                         </div>
                         <div class="update-form__button">
@@ -57,7 +84,7 @@
                 </td>
 
                 <td class="todo-table__item">
-                    <form class="delete-form" action="/todos/delete"  method="post">
+                    <form class="delete-form" action="{{ route('todos.destroy') }}"  method="post">
                     @method('DELETE')
                     @csrf
                         <div class="delete-form__button">

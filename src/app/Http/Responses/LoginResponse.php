@@ -9,7 +9,7 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        return redirect()->route('users.show', auth()->user()->id); 
+        return redirect()->route('mypage'); 
         
     }
 }

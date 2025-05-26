@@ -29,7 +29,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {   
-        $this->app->singleton(LoginViewResponse::class, LoginResponse::class);
+        //$this->app->singleton(LoginViewResponse::class, LoginResponse::class);
 
         Fortify::createUsersUsing(CreateNewUser::class);
           

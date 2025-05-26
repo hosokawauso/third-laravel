@@ -1,5 +1,5 @@
 .header {
-    background: #000;
+    background: #35352b;
 }
 
 .header__inner {
@@ -15,14 +15,14 @@
 }
 
 .header__logo {
-    color: #fff;
+    color: rgb(224, 215, 215);
     text-decoration: none;
     font-weight: bold;
     font-size: 24px;
 }
 
 .header-utilities nav {
-    width: 18%;
+    width: 25%;
 }
 
 .header-nav {
@@ -30,16 +30,22 @@
     align-items: center;
     justify-content: space-between;
 }
-
 .header-nav__link {
-    color: #fff;
     text-decoration: none;
 }
 
-.header-nav__button {
-    border: none;
-    background: transparent;
-    color: #fff;
+.header-nav__button, .header-nav__link {
+    color: white;
     font-size: 16px;
-    cursor: pointer;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #d24444;
+    border: dashed #bbb;
+    box-shadow: 0 0 0 4px #d24444;
+}
+
+main {
+    margin-top: 60px;
+    padding: 20px;
 }
