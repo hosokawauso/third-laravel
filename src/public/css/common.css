@@ -49,3 +49,22 @@ main {
     margin-top: 60px;
     padding: 20px;
 }
+
+.footer {
+    background: rgb(135, 144, 150);
+    
+}
+
+.footer__inner{
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 20px 15px;
+
+}
+
+.footer-content {
+    color: aliceblue;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+}

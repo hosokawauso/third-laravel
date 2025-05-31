@@ -6,6 +6,7 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::post('/todos', [TodoController::class, 'store'])->name('todos.store');
 Route::patch('/todos/update', [TodoController::class, 'update'])->name('todos.update');
 Route::delete('/todos/delete', [TodoController::class, 'destroy'])->name('todos.destroy');
 
+//Route::resource('todos', TodoController::class);
+
 //日記操作の定義
 Route::get('/diary', [DiaryController::class, 'index'])->name('diary.index');
 Route::post('/diary', [DiaryController::class, 'store'])->name('diary.store');
@@ -53,6 +56,10 @@ Route::post('/diary', [DiaryController::class, 'store'])->name('diary.store');
     Route::post('/contact/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
     Route::post('/contact/thanks', [ContactController::class, 'thanks'])->name('contact.thanks.post');
     Route::get('/contact/thanks', [ContactController::class, 'showThanks'])->name('contact.thanks');
+
+//クイズコーナーの定義
+    Route::get('/quiz', [QuizController::class, 'show'])->name('quiz.show');
+    Route::post('/quiz', [QuizController::class, 'check'])->name('quiz.check');
     
 
 

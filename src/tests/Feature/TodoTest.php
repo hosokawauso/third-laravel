@@ -10,12 +10,15 @@ use App\Models\Todo;
 
 class TodoTest extends TestCase
 {
-   use RefreshDatabase;
+   use RefreshDatabase; //各テスト後にデータベースをリフレッシュ
 
     public function testCreateTodo()
     {
-       $user = User::factory()->create();
-       $this -> actingAs($user);
+       
+       $this->withoutMiddleware(\App\Http\Middleware\VerifyCsrfToken::class);
+       
+        $user = User::factory()->create();
+        $this -> actingAs($user);
        
         $response = $this->post('/todos', [
             'content' => 'New Todo',
@@ -39,14 +42,29 @@ class TodoTest extends TestCase
 
         ]);
 
-        $response = $this->get('/');
+        $response = $this->get('/todos');
         $response -> assertSee('My Todo');
     }
 
-    public function testUpdataTodo()
+    public function testUpdateTodo()
     {
         $user = User::factory()->create();
+        $this -> actingAs($user);
+
+        $todo = Todo::factory()->create([
+            'user_id' => $user -> id,
+            'content' => 'Old Content',
+        ]);
+
+        $response = $this->patch(
+            route('todos.update', ['todo' => $todo -> id]),
+        );
+
+        $response -> assertRedirect('/');
+        $this -> assertDatabaseHas('todos',[
+            'id' => $todo -> id,
+            'content' => 'Updated Content',
+        ]);
     }
 
-    
 }

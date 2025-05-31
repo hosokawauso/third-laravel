@@ -44,6 +44,12 @@
     @yield('path')
    </main>
 
+   <footer class="footer">
+      <div class="footer__inner">
+         <p class="footer-content">これは私の練習で作成しています</p>
+      </div>
+   </footer>
+
 @yield('script')
 </body>
 </html>

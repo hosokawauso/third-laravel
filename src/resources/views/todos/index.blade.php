@@ -8,7 +8,7 @@
 <div class="header__inner">
     <div class="header-utilities">
         <a class="header__logo" href="/todos">
-        {{ $user->name }} さんのTodoリスト
+        {{ $user->name ?? 'ゲスト' }} さんのTodoリスト
         </a>
         <nav>
            <ul class ="header-nav">

@@ -12,36 +12,47 @@ class TodoController extends Controller
     public function index()
     {
        $user = Auth::user();
-       $todos = $user->todos()->get();
+       $todos =$user->todos;
        
         //$todos = Auth::user()->todos()->get(); うまく作動した
         //$todos = Todo::all();  ユーザー認証なし、全部見られる
 
-        return view('todos.index',compact('todos','user'));
+        return view('todos.index',compact('todos', 'user'));
     }
 
 
     public function store(TodoRequest $request)
     {
-       $todo = $request->only(['content']);
-       Auth::user()->todos()->create($request->only('content'));
+        // $todo = $request->only(['content']);
+       //Auth::user()->todos()->create($request->only('content'));
 
-        return redirect('/todos')->with('message', 'Todoを作成しました');
+        
+
+       // $todo = $request->only(['content']);
+
+        //Todo::find($request->id)->update($todo);
+
+        $todo = $request ->only(['content']);
+        Todo::create($todo);
+
+        return redirect('/')->with('message', 'Todoを作成しました');
+
     }
 
     public function update(TodoRequest $request)
     {
-        $todo = Todo::find($request->id);
+        Log::debug('受け取った ID: ' . $request->id); 
+        
+        $todo -> update($request->only('content'));
+        Todo::find($request->id)->update($todo);
       
       
        if(!$todo) 
        {
-        return redirect('/')->with('error', '指定されたTodoが見つかりません');
+        return redirect('/todos')->with('error', '指定されたTodoが見つかりません');
        } 
 
-       $todo->update($request->only('content'));
-
-      return redirect('/')->with('message', 'Todoを更新しました');
+      return redirect('/todos')->with('message', 'Todoを更新しました');
     }
 
     public function destroy(Request $request)
@@ -49,6 +60,6 @@ class TodoController extends Controller
 
         Todo::find($request->id)->delete();
 
-        return redirect('/')->with('message', 'Todoを削除しました');
+        return redirect('/todos')->with('message', 'Todoを削除しました');
     }
 }

@@ -42,6 +42,9 @@
     <li class="list-nav__item">
         <a href="{{ route('contact.contact') }}">お問い合わせフォーム</a>
     </li>
+    <li class="list-nav__item" >
+        <a href="{{ route('quiz.show') }}">Status Quiz</a>
+    </li>
 </ul>
 
 
